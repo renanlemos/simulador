@@ -1,0 +1,10 @@
+{
+  "name": "simulador",
+  "version": "0.0.1",
+  "description": "Smulador - Trabalho Sistemas Operacionais",
+  "devDependencies": {
+    "grunt": "~0.4.5",
+    "grunt-contrib-cssmin": "^1.0.1",
+    "grunt-contrib-uglify": "~0.5.0"
+  }
+}

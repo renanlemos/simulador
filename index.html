@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html data-ng-app="Simulador">
+<head>
+	<title>Trabalho Sistemas Operacionais</title>
+	
+    <base href="/" />
+	<meta charset="UTF8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<meta name="keywords" content="Trabalho,Sistemas Operacionais,Faccat,Programação Web,Faculdade" />
+	<meta name="description" content="Trabalho de Sistemas Operacionais - Simulador de Fluxo de Processos" />
+
+	<link rel="stylesheet" type="text/css" href="css/libs/bootstrap/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="css/libs/jquery/jquery-ui.min.css" />
+	<link rel="stylesheet" type="text/css" href="css/estilos.css" />
+	<link rel="stylesheet" type="text/css" href="css/modais.css" />
+	<link rel="stylesheet" type="text/css" href="css/modulos/simulador-form.css" />
+
+</head>
+<body>
+
+	<div data-simulador-form data-ng-if="simuladorStatus == 0"></div>
+	<div class="view-content" data-ng-view data-ng-class="{'hide':simuladorStatus == 0}">
+	</div>
+
+	<script type="text/javascript" src="js/libs/jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="js/libs/jquery/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="js/angular/angular.min.js"></script>
+	<script type="text/javascript" src="js/angular/modulos/route.min.js"></script>
+	<script type="text/javascript" src="js/angular/modulos/sanitize.min.js"></script>
+	<script type="text/javascript" src="app/init.js"></script>
+	<script type="text/javascript" src="app/widgets/modulos/simulador-form.js"></script>
+	<script type="text/javascript" src="app/widgets/modulos/simulador-processos.js"></script>
+	<script type="text/javascript" src="app/widgets/modulos/modais.js"></script>
+	<script type="text/javascript" src="app/services/SimuladorService.js"></script>
+	<script type="text/javascript" src="app/services/ProcessosService.js"></script>
+	<script type="text/javascript" src="app/services/ValidationService.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,37 @@
+<section class="simulador-form">
+	<form class="form" data-ng-submit="simuladorInit()" novalidate>
+		<div class="row">
+			<div class="col-md-12">
+				<label for="dataItem.processos">Processos</label>
+				<input type="text" data-ng-model="dataItem.processos" class="form-control" />
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<label for="dataItem.tempo_ciclo">Tempo do Ciclo</label>
+				<input type="text" data-ng-model="dataItem.tempo_ciclos" class="form-control" />
+			</div>
+		</div>	
+		<div class="row">
+			<div class="col-md-12">
+				<hr>
+				<button type="submit" class="btn btn-primary">
+					Iniciar Simulador
+				</button>
+			</div>	
+		</div>	
+	</form>	
+</section>	
+<div data-modulo-modal-custom data-title="Atenção" data-efeito="fade" data-visible="{{modal_info}}" data-class="modal-custom modal-cart-success" data-width="450"> 
+	<div class="content-modal">
+		<div class="content">
+			<div class="messages {{messages.class}}" data-ng-bind-html="messages.data">
+			</div>
+		</div>
+		<div class="footer">
+			<button type="button" title="Ir para o Carrinho" data-ng-click="window.modal_info.close()">
+				Fechar
+			</button>
+		</div>
+	</div>			
+</div>

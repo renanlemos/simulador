@@ -1,0 +1,18 @@
+.simulador-form{
+	width: 400px;
+	margin: 10% auto;
+	display: table;
+	border: 1px solid #eee;
+	padding: 20px;
+	position: relative;
+}
+.simulador-form form label{
+	margin: 10px 0;
+}
+.simulador-form form hr{
+	margin: 30px 0 10px 0;
+}
+.simulador-form form button{
+	margin: 0 auto;
+	display: table;
+}
