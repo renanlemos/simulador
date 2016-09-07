@@ -32,6 +32,7 @@ $app.directive("simuladorForm",function(BASE_TEMPLATE,ValidationService,Simulado
 					}else{
 
 						SimuladorService.setStatus(1);
+						SimuladorService.setParams(scope.dataItem);
 						
 					}	
 				

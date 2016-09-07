@@ -1,16 +1,28 @@
 <section class="simulador-processos">
-    <div class="titulo">
-    <h1>Processos</h1>
+    <button class="btn btn-default" type="button" data-ng-click="reiniciar()">
+    	Reiniciar
+    </button>
+    <div class="page-titulo">
+    	<h1>Processos</h1>
     </div>
 	<div class="table-responsive">
-		<table class="table">
+		<table class="table table-bordered">
 			<thead>
 				<th>PID</th>
 				<th>Nome</th>
-				<th>Tempo Total</th>
+				<th>Tempo Executado</th>
 				<th>Tempo Total</th>
 				<th>Estado</th>		
-			</thead>	
+			</thead>
+			<tbody>
+				<tr data-ng-repeat="p in processos">
+					<td>{{p.pid}}</td>
+					<td>{{p.nome}}</td>
+					<td>{{p.tempo_executado}}</td>
+					<td>{{p.tempo_total}}</td>
+					<td>{{p.estado | filter_estado}}</td>
+				</tr>
+			</tbody>	
 		</table>
 	</div>
 </section>		

@@ -18,6 +18,7 @@ $app.run(function(SimuladorService,$rootScope){
 
 	$rootScope.simuladorStatus = SimuladorService.status();
 	
+
 }); 
 
 
