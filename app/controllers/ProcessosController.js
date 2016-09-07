@@ -52,41 +52,41 @@ $app.controller("ProcessosController",function($scope,$timeout,$rootScope,Simula
 					**/
 					if(countTempoProcessador < 50){
 
-						// Adiciona 1 ao tempo de execução do processo current
-						ProcessosService.addTempoExecutando(); 
-						// Adiciona 1 ao contador de ciclos do processador
-						ProcessosService.countTempoProcessador(); 
-
-
-						/**
-						*  
-						* Sorteia um número entre 1 e 100.
-						* Se o número for igual a 1 então solicita um dispositivo de E/S.
-						*
-						**/
-						var sorteio = SimuladorService.getRandomInt(1,100);
-						
-						if(sorteio == 1){
-
-							var dispositivo = ProcessosService.getDispositivo();
-							console.log(dispositivo);
-
-						}
-
-					}else{
-						
 						// Verifica se o tempo do processo expirou e destroi o processo
 						if(processoExecutando[0].tempo_total == processoExecutando[0].tempo_executado){
 
 							// Destroi o processo
 							ProcessosService.addFilaDestruidos();
-						}
+						
+						}else{
+							// Adiciona 1 ao tempo de execução do processo current
+							ProcessosService.addTempoExecutando(); 
+							// Adiciona 1 ao contador de ciclos do processador
+							ProcessosService.countTempoProcessador(); 
+							/**
+							*  
+							* Sorteia um número entre 1 e 100.
+							* Se o número for igual a 1 então solicita um dispositivo de E/S.
+							*
+							**/
+							var sorteio = SimuladorService.getRandomInt(1,100);
+							
+							if(sorteio == 1){
+
+								var dispositivo = ProcessosService.getDispositivo();
+								console.log(dispositivo);
+
+							}
+						}	
+
+					}else{
+						
 						// Adiciona 1 um novo processo para a execução
 						ProcessosService.addFilaExecutando();
 						// Zera o Contador do Processador
 						ProcessosService.zeraTempoProcessador(); 
 					}
-						
+
 				}else{
 					// Adiciona 1 um novo processo para a execução
 					ProcessosService.addFilaExecutando();
@@ -97,6 +97,7 @@ $app.controller("ProcessosController",function($scope,$timeout,$rootScope,Simula
 
 		$scope.fila_aptos      = ProcessosService.getFilaAptos();
 		$scope.fila_executando = ProcessosService.getFilaExecutando();
+		$scope.fila_destruidos = ProcessosService.getFilaDestruidos();
 
 	}
     /**

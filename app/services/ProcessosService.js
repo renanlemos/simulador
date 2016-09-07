@@ -90,26 +90,28 @@ $app.service("ProcessosService",function($rootScope,SimuladorService){
 
         var fila_aptos      = this.getFilaAptos();
         var fila_executando = this.getFilaExecutando();
-        var processo        = fila_aptos.data[0];
+        var processo        = typeof(fila_aptos.data[0]) == "undefined" ? null : fila_aptos.data[0];
 
-        processo.estado = 2;
-        fila_aptos.data.splice(0,1);
+        if(processo != null){
+            processo.estado = 2;
+            fila_aptos.data.splice(0,1);
 
-        if(fila_executando.length == 0){
-                
-            localStorage.setItem("simuladorProcessosExecutando",JSON.stringify([processo]));
-            localStorage.setItem("simuladorProcessosAptos",JSON.stringify(fila_aptos));
-        
-        }else{
-
-
-            fila_executando[0].estado = 1;    
-            fila_aptos.data.push(fila_executando[0]);
-            localStorage.setItem("simuladorProcessosAptos",JSON.stringify(fila_aptos));
-
-            localStorage.setItem("simuladorProcessosExecutando",JSON.stringify([processo]));
+            if(fila_executando.length == 0){
+                    
+                localStorage.setItem("simuladorProcessosExecutando",JSON.stringify([processo]));
+                localStorage.setItem("simuladorProcessosAptos",JSON.stringify(fila_aptos));
             
-        }
+            }else{
+
+
+                fila_executando[0].estado = 1;    
+                fila_aptos.data.push(fila_executando[0]);
+                localStorage.setItem("simuladorProcessosAptos",JSON.stringify(fila_aptos));
+
+                localStorage.setItem("simuladorProcessosExecutando",JSON.stringify([processo]));
+                
+            }
+        }    
 
     }
     /**
@@ -175,15 +177,15 @@ $app.service("ProcessosService",function($rootScope,SimuladorService){
 
         var fila_destruidos = this.getFilaDestruidos();
         var processo        = this.getFilaExecutando();
-        
+
         processo[0].estado  = 4;
-        fila_destruidos.push(processo);
+        fila_destruidos.push(processo[0]);
 
         localStorage.setItem("simuladorProcessosDestruidos",JSON.stringify(fila_destruidos))    
         localStorage.setItem("simuladorProcessosExecutando",JSON.stringify([]));
 
         this.addProcessosDestruidos();
-        
+
     }
     /**
     *
