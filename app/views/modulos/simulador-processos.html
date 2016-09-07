@@ -5,24 +5,73 @@
     <div class="page-titulo">
     	<h1>Processos</h1>
     </div>
-	<div class="table-responsive">
-		<table class="table table-bordered">
-			<thead>
-				<th>PID</th>
-				<th>Nome</th>
-				<th>Tempo Executado</th>
-				<th>Tempo Total</th>
-				<th>Estado</th>		
-			</thead>
-			<tbody>
-				<tr data-ng-repeat="p in processos.data">
-					<td>{{p.pid}}</td>
-					<td>{{p.nome}}</td>
-					<td>{{p.tempo_executado}}</td>
-					<td>{{p.tempo_total}}</td>
-					<td>{{p.estado | filter_estado}}</td>
-				</tr>
-			</tbody>	
-		</table>
-	</div>
+    <section class="bloco fila-execucao">
+		<h2>Em Execução</h2>
+		<div class="table-responsive">
+			<table class="table table-bordered">
+				<thead>
+					<th>PID</th>
+					<th>Nome</th>
+					<th>Tempo Executado</th>
+					<th>Tempo Total</th>
+					<th>Estado</th>		
+				</thead>
+				<tbody>
+					<tr data-ng-repeat="p in fila_executando">
+						<td>{{p.pid}}</td>
+						<td>{{p.nome}}</td>
+						<td>{{p.tempo_executado}}</td>
+						<td>{{p.tempo_total}}</td>
+						<td>{{p.estado | filter_estado}}</td>
+					</tr>
+				</tbody>	
+			</table>
+		</div>
+	</section>
+    <section class="bloco fila-aptos">
+        <h2>Fila de Aptos</h2>
+		<div class="table-responsive">
+			<table class="table table-bordered">
+				<thead>
+					<th>PID</th>
+					<th>Nome</th>
+					<th>Tempo Executado</th>
+					<th>Tempo Total</th>
+					<th>Estado</th>		
+				</thead>
+				<tbody>
+					<tr data-ng-repeat="p in fila_aptos.data">
+						<td>{{p.pid}}</td>
+						<td>{{p.nome}}</td>
+						<td>{{p.tempo_executado}}</td>
+						<td>{{p.tempo_total}}</td>
+						<td>{{p.estado | filter_estado}}</td>
+					</tr>
+				</tbody>	
+			</table>
+		</div>
+	</section>
+	<section class="bloco fila-aptos">
+        <h2>Fila de Destruídos</h2>
+		<div class="table-responsive">
+			<table class="table table-bordered">
+				<thead>
+					<th>PID</th>
+					<th>Nome</th>
+					<th>Tempo Executado</th>
+					<th>Tempo Total</th>
+					<th>Estado</th>		
+				</thead>
+				<tbody>
+					<tr data-ng-repeat="p in fila_destruidos">
+						<td>{{p.pid}}</td>
+						<td>{{p.nome}}</td>
+						<td>{{p.tempo_executado}}</td>
+						<td>{{p.tempo_total}}</td>
+						<td>{{p.estado | filter_estado}}</td>
+					</tr>
+				</tbody>	
+			</table>
+		</div>
+	</section>
 </section>		

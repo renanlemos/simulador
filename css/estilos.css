@@ -7,7 +7,11 @@ html,body{
 	overflow-x: hidden;
 	overflow-y: auto;
 }
+h1,h2,h3{font-family: 'Khula', sans-serif;}
 .page-titulo h1{
-	font-family: 'Khula', sans-serif;
+	font-size: 26px;
+}
+.bloco h2{
 	font-size: 20px;
+	text-align: center;
 }
