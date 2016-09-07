@@ -1,14 +1,6 @@
 $app.controller("ProcessosController",function($scope,$timeout,$rootScope,SimuladorService,ProcessosService){
 
     
-    var addProcesso = function(pid,estado){
-    	
-    	/** Sorteia um número entre 100 e 300 **/
-		var tempo_execucao = SimuladorService.getRandomInt(100,300);
-		/** Cria o primeiro processo **/
-		ProcessosService.addProcesso(pid,"Processo "+pid,tempo_execucao,estado);
-    
-    }
     /**
     *
     * Laço dos processos
@@ -17,18 +9,21 @@ $app.controller("ProcessosController",function($scope,$timeout,$rootScope,Simula
     * @return void
     *
     **/ 
-	var rowProcesso = function(pid){
+	var rowProcesso = function(){
 
-		if(pid == 1){
-			/** Sorteia um número entre 100 e 300 **/
-			addProcesso(pid,1);
+		var processos = ProcessosService.getProcessos();
+
+		if(processos.count == 0){
+			/** Cria um processos **/
+			ProcessosService.createProcesso();
+
 		}else{
 
 			/** Sorteia um número entre 100 e 300 **/
 			var sorteio = SimuladorService.getRandomInt(1,100);
 
 			if(sorteio <= 10){
-				addProcesso(pid,1);
+				ProcessosService.createProcesso();
 			}else{
 
 			}
@@ -48,17 +43,15 @@ $app.controller("ProcessosController",function($scope,$timeout,$rootScope,Simula
 	var processos = function(pid){
 
 		var params          = SimuladorService.getParams();
-		var pid             = typeof(pid) == "undefined" ? 1 : pid;
 		var NumeroProcessos = params.processos;
 		var TempoCiclo      = params.tempo_ciclos * 1000;
 
-		if(pid <= NumeroProcessos){
+		if($scope.destruidos <= NumeroProcessos){
 
-			rowProcesso(pid);
-			pid++;
+			rowProcesso();
 
 			$timeout(function(){
-				processos(pid);
+				processos();
 			},TempoCiclo);
 
 		}
@@ -69,7 +62,7 @@ $app.controller("ProcessosController",function($scope,$timeout,$rootScope,Simula
 
 		localStorage.clear();
 		$rootScope.simuladorStatus = false;
-		$scope.processos =  [];
+		$scope.processos           =  {data:[],count:0};;
 	}
 	/**
 	*
@@ -79,8 +72,13 @@ $app.controller("ProcessosController",function($scope,$timeout,$rootScope,Simula
 	*
 	**/
 	var init = function(){
-		processos(1);
-		$scope.processos = ProcessosService.getProcessos();
+		
+		$scope.destruidos    = ProcessosService.countProcessosDestruidos();
+		processos();
+		$scope.processos      = ProcessosService.getProcessos();
+
+		console.log($scope.processos);
+	
 	}
 	init(); 
 

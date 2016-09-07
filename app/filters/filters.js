@@ -1,8 +1,6 @@
 $app.filter('filter_estado', function() {
     return function(estado) {
         
-        console.log(estado);	
-
         switch(estado){
         	case 1:
         		return "Apto";

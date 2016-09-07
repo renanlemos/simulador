@@ -1,4 +1,4 @@
-$app.service("ProcessosService",function($rootScope){
+$app.service("ProcessosService",function($rootScope,SimuladorService){
     
     /**
     *
@@ -8,21 +8,24 @@ $app.service("ProcessosService",function($rootScope){
     * @return void
     *
     **/
-	this.addProcesso = function(pid,nome,tempo,estado){
+	this.createProcesso = function(){
 
-		var processos = this.getProcessos();
-        
+		var processosData  = this.getProcessos();
+        var tempo_execucao = SimuladorService.getRandomInt(100,300);
+
+        processosData.count++;
+
         var processo  = {
-            pid:pid,
-            nome:nome,
-            tempo_total:tempo,
+            pid:processosData.count,
+            nome:"Processo "+processosData.count,
+            tempo_total:tempo_execucao,
             tempo_executado:0,
-            estado:estado
+            estado:1
         };
 
-        processos.push(processo);
-
-        localStorage.setItem("simuladorProcessos",JSON.stringify(processos));
+        processosData.data.push(processo);
+        
+        localStorage.setItem("simuladorProcessos",JSON.stringify(processosData));
 
 	}
 	/**
@@ -34,7 +37,7 @@ $app.service("ProcessosService",function($rootScope){
     **/
     this.getProcessos = function(){
 
-    	var data      = [];
+    	var data      = {data:[],count:0};
     	var processos = localStorage.getItem("simuladorProcessos");
 
     	if(processos != null){
@@ -45,6 +48,44 @@ $app.service("ProcessosService",function($rootScope){
 
 
     }
+    /**
+    *
+    * Contador dos processos destruídos
+    *
+    * @return integer
+    *
+    **/
+    this.countProcessosDestruidos = function(){
+
+        var count = localStorage.getItem("simuladorCountDestruidos");
+
+        if(count == null){
+            return 0;
+        }   
+
+        return count;
+
+
+    }
+    /**
+    *
+    * Adiciona 1 ao contador dos processos destruidos
+    *
+    * @return void
+    *
+    **/
+    this.addProcessosDestruidos = function(){
+
+        var count = localStorage.getItem("simuladorCountDestruidos");
+
+        if(count != null){
+            localStorage.setItem("simuladorCountDestruidos",1);
+        }else{
+            count++;
+            localStorage.setItem("simuladorCountDestruidos",count);
+        }   
+    }
+  
 
 
 }); 
